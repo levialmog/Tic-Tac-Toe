@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {Component} from 'react'
+import MyContext from './Context'
 
 class Square extends Component {
   constructor(){
@@ -9,9 +10,15 @@ class Square extends Component {
 
   render() {
     return (
-      <div className="App">
-        <button></button>
-      </div>
+      <MyContext.Consumer>
+        {
+          context =>(
+            <span className="Square">
+            <button style={{height:100, width:100}}></button>
+            </span>
+          )
+        }
+      </MyContext.Consumer>
     );
   }
 }
