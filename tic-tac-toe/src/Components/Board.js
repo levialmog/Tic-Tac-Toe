@@ -4,13 +4,15 @@ import SquareComp from "./Square";
 class BoardComp extends Component {
   constructor(props) {
     super(props);
-    this.state = { size: props.size, matrix: [ undefined, undefined, undefined, 
+    this.state = { size: props.size, array: [ undefined, undefined, undefined, 
                                                undefined, undefined, undefined,
                                                undefined, undefined, undefined ] };
   }
 
-  updateMatrix = (index) => {
-    this.state.matrix[index] = this.props.turn;
+  updateArray = (index) => {
+    let arrayCopy = this.state.array;
+    arrayCopy[index] = this.props.turn;
+    this.setState({array: arrayCopy});
     this.checkBoardGame();
   }
 
@@ -19,8 +21,8 @@ class BoardComp extends Component {
     optionsToWin.forEach(row => {
       let [a, b, c] = row
       
-      if((this.state.matrix[a] !== undefined && this.state.matrix[b] !== undefined && this.state.matrix[c] !== undefined) &&
-         (this.state.matrix[a] === this.state.matrix[b] === this.state.matrix[c])){
+      if((this.state.array[a] !== undefined && this.state.array[b] !== undefined && this.state.array[c] !== undefined) &&
+         (this.state.array[a] === this.state.array[b] && this.state.array[b] === this.state.array[c])){
             this.props.win()
             return;
         }
@@ -35,7 +37,7 @@ class BoardComp extends Component {
           {arr.map((col) => {
             return (
               <td key={col}>
-                <SquareComp updateMatrix= {this.updateMatrix} cell={row * this.state.size + col}/>
+                <SquareComp updateArray= {this.updateArray} cell={row * this.state.size + col}/>
               </td>
             );
           })}

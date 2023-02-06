@@ -28,7 +28,7 @@ class Controller extends Component {
         </h1>
       </div>
     ) : (
-      <WinComp turn={this.state.turn} />
+      <WinComp turn={!this.state.turn} />
     );
 
     return (

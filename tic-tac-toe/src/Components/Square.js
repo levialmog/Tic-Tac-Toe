@@ -13,7 +13,7 @@ class SquareComp extends Component {
     const handleClick = async (context) => {
       if (!this.state.isChanged) {
         this.setState({ image: context.turn, isChanged: true });
-        await this.props.updateMatrix(this.props.cell);
+        await this.props.updateArray(this.props.cell);
         await context.changeTurn();
       }
     };
