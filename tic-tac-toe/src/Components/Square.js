@@ -1,22 +1,20 @@
-import logo from "./logo.svg";
-import "./App.css";
 import React, { Component } from "react";
-import MyContext from "./Context";
+import MyContext from "../Context";
+import xImage from "../images/x.png";
+import oImage from "../images/o.png";
 
-import xImage from "./images/x.png";
-import oImage from "./images/o.png";
-
-class Square extends Component {
+class SquareComp extends Component {
   constructor() {
     super();
     this.state = { image: null, isChanged: false };
   }
 
   render() {
-    const handleClick = (context) => {
+    const handleClick = async (context) => {
       if (!this.state.isChanged) {
         this.setState({ image: context.turn, isChanged: true });
-        context.changeTurn();
+        await this.props.updateMatrix(this.props.cell);
+        await context.changeTurn();
       }
     };
 
@@ -48,4 +46,4 @@ class Square extends Component {
   }
 }
 
-export default Square;
+export default SquareComp;
